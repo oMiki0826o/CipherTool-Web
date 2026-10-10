@@ -100,3 +100,9 @@ footer { padding: 30px 0 68px; color: var(--muted); border-top: 1px solid var(--
   .tool-row small { grid-column: 2; }
   .workbench-foot { align-items: flex-start; flex-direction: column; gap: 12px; }
 }
+
+.workbench-error {color:#b42e31;font-weight:600;margin:12px 0;}
+.workbench-notice {color:var(--muted);font-size:.85rem;}
+.workbench-actions {display:flex;flex-wrap:wrap;gap:10px;}
+.workbench-actions button:disabled {opacity:.45;cursor:not-allowed;}
+:focus-visible {outline:3px solid var(--vermillion);outline-offset:3px;}
