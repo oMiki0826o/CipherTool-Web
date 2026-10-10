@@ -1,0 +1,5 @@
+import { notFound } from "next/navigation";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { tutorialSections, tutorialSlugs } from "@/lib/tutorials";
+export function generateStaticParams() { return tutorialSlugs.map((slug) => ({ slug })); }
+export default async function TutorialPage({ params }: { params: Promise<{ slug: string }> }) { const { slug } = await params; if (!tutorialSlugs.includes(slug as never)) notFound(); const sections = tutorialSections(slug); return <main className="site-shell article-page"><header className="site-header"><a className="brand" href="../../">CipherTool <span>WEB</span></a><nav><a href="../">返回教學文件</a><ThemeToggle /></nav></header><article className="article"><p className="eyebrow">READING NOTES / {slug.toUpperCase()}</p>{sections.map((section, index) => <section key={section.heading} className="article-section"><h1>{index === 0 ? section.heading : null}</h1>{index > 0 && <h2>{section.heading}</h2>}{section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</section>)}</article></main>; }

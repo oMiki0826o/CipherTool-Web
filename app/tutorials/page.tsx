@@ -1,0 +1,4 @@
+import { ThemeToggle } from "@/components/theme-toggle";
+import { tutorialSlugs, tutorialSections } from "@/lib/tutorials";
+const names: Record<string, string> = { "classical-ciphers": "經典密碼概念", substitution: "替換密碼", transposition: "換位密碼", encodings: "文字編碼" };
+export default function TutorialsPage() { return <main className="site-shell"><header className="site-header"><a className="brand" href="../">CipherTool <span>WEB</span></a><nav><a href="../">返回工作台</a><ThemeToggle /></nav></header><section className="hero compact"><p className="eyebrow">READING NOTES</p><h1>教學文件</h1><p className="lead">從密碼的排列方式開始，慢慢理解每個工具正在做什麼。</p></section><div className="tool-list tutorial-list">{tutorialSlugs.map((slug, index) => <a className="tool-row" href={`./${slug}/`} key={slug}><span>{String(index + 1).padStart(2, "0")}</span><strong>{names[slug]}</strong><small>{tutorialSections(slug)[0]?.paragraphs[0]}</small><b>閱讀</b></a>)}</div></main>; }

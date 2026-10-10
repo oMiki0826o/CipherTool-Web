@@ -9,6 +9,7 @@ CipherTool Web 是 CipherTool 的瀏覽器版：把經典密碼與文字編碼�
 - 凱撒、ROT13、Atbash、維吉尼亞、仿射、欄柵密碼
 - Base64、十六進位、URL、摩斯編碼
 - 每個工具皆有獨立路由 `/tools/<slug>/`
+- `docs/tutorials/` 提供對應的經典密碼與編碼教學
 - 深色／淺色主題、響應式版面、結果複製
 - 純瀏覽器處理：不上傳文字、不需要帳號
 
