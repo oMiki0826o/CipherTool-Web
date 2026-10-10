@@ -8,5 +8,5 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const tool = getTool(slug);
   if (!tool) notFound();
-  return <main className="site-shell tool-page"><header className="site-header"><a className="brand" href="../../">CipherTool <span>WEB</span></a><nav><a href="../../">← 工作台</a><ThemeToggle /></nav></header><section className="hero compact"><p className="eyebrow">TOOL / {tool.slug.toUpperCase()}</p><h1>{tool.name}</h1><p className="lead">{tool.description}</p></section><Workbench initialSlug={tool.slug} /></main>;
+  return <main className="site-shell tool-page"><header className="site-header"><a className="brand" href="../../">CipherTool <span>WEB</span></a><nav><a href="../../">返回工作台</a><ThemeToggle /></nav></header><section className="hero compact"><p className="eyebrow">工具 / {tool.slug.toUpperCase()}</p><h1>{tool.name}</h1><p className="lead">{tool.description}</p></section><Workbench initialSlug={tool.slug} /></main>;
 }
