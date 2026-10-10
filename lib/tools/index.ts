@@ -1,4 +1,4 @@
-import { affine, alberti, atbash, autokey, bacon, beaufort, caesar, columnar, kamasutra, playfair, polybius, railFence, railFenceDecode, rot13, scytale, substitution, vigenere } from "./ciphers";
+import { affine, alberti, atbash, autokey, bacon, beaufort, caesar, columnar, hill, kamasutra, pigpen, playfair, polybius, railFence, railFenceDecode, rot13, scytale, substitution, vigenere } from "./ciphers";
 import { base32Decode, base32Encode, base64Decode, base64Encode, hexDecode, hexEncode, morseDecode, morseEncode, urlDecode, urlEncode } from "./encodings";
 export type Tool = { slug: string; name: string; english: string; description: string; fields: { key: string; label: string; type?: "number" | "text"; defaultValue?: string; placeholder?: string }[]; transform: (text: string, fields: Record<string, string>, decrypt?: boolean) => string };
 const number = (key: string, label: string, value: string) => ({ key, label, type: "number" as const, defaultValue: value });
@@ -19,6 +19,8 @@ export const tools: Tool[] = [
   { slug: "bacon", name: "培根密碼", english: "Bacon cipher", description: "以 A 與 B 的五位群組表示字母。", fields: [], transform: (text, _, decrypt) => bacon(text, decrypt) },
   { slug: "kamasutra", name: "卡馬蘇特拉密碼", english: "Kamasutra cipher", description: "依成對字母表互換字母。", fields: [{ key: "pairs", label: "字母配對", defaultValue: "AB CD EF GH IJ KL MN OP QR ST UV WX YZ" }], transform: (text, fields) => kamasutra(text, fields.pairs) },
   { slug: "alberti", name: "阿爾貝蒂轉盤", english: "Alberti cipher disk", description: "以位移模擬可調式密碼轉盤。", fields: [number("position", "轉盤位置", "7")], transform: (text, fields, decrypt) => alberti(text, Number(fields.position) || 0, decrypt) },
+  { slug: "hill", name: "希爾密碼", english: "Hill cipher", description: "使用二乘二矩陣對英文字母分組運算。", fields: [{ key: "matrix", label: "矩陣", defaultValue: "3,3,2,5" }], transform: (text, fields, decrypt) => hill(text, fields.matrix, decrypt) },
+  { slug: "pigpen", name: "豬圈密碼", english: "Pigpen cipher", description: "以符號表示英文字母的替換密碼。", fields: [], transform: (text) => pigpen(text) },
   { slug: "base64", name: "Base64", english: "Base64", description: "將 UTF-8 文字轉成 Base64。", fields: [], transform: (text, _, decrypt) => decrypt ? base64Decode(text) : base64Encode(text) },
   { slug: "base32", name: "Base32", english: "Base32", description: "將 UTF-8 文字轉成 Base32。", fields: [], transform: (text, _, decrypt) => decrypt ? base32Decode(text) : base32Encode(text) },
   { slug: "hex", name: "十六進位", english: "Hex encoding", description: "在 UTF-8 文字與十六進位位元組間轉換。", fields: [], transform: (text, _, decrypt) => decrypt ? hexDecode(text) : hexEncode(text) },
