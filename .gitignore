@@ -3,4 +3,5 @@ node_modules/
 out/
 data/
 .DS_Store
+*.tsbuildinfo
 *.log
